@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using System.Collections.Generic;
 
 namespace FibonacciBanking
@@ -26,9 +26,12 @@ namespace FibonacciBanking
             // there are countless(almost) possibilities for the 1,1 case, so skip that.
             for (int i = fibos.Count - 1; i > 1; i--)
             {
-                result = SolveForStep(i, fibos[i].Item1, fibos[i].Item2);
-                if (result != null)
-                    break;
+                if (result == null)
+                    result = SolveForStep(i, fibos[i].Item1, fibos[i].Item2);
+                else
+                    SolveForStep(i, fibos[i].Item1, fibos[i].Item2);
+                // if (result != null)
+                //     break;
             }
 
             int checkA = a = result.Item1;
@@ -58,23 +61,24 @@ namespace FibonacciBanking
             Tuple<int, int> found = null;
             while (a < maxA)
             {
-                int b = 1;
-                int result;
-                do
+                // the "try looping" approach was brute forcing it.
+                // Since we now have an assumed solution for "a", let's try if there is an integer solution for "b"
+                // by using the power of modulo division...
+                // Also, b must be > than a, since b is acutally made up of a plus a non-zero addition.
+
+                int remainder = (targetAmount - f1 * a) % f2;
+                int b = (targetAmount - f1 * a) / f2;
+                if (remainder == 0 && b > a)
                 {
-                    result = f1 * a + f2 * b;
-                    if (result == targetAmount)
+                    count++;
+                    if (count == 1)
                     {
-                        count++;
-                        if (count == 1)
-                        {
-                            Console.WriteLine();
-                            found = new Tuple<int, int>(a, b);
-                        }
+                        // remember and print the first found solution, just count the rest...
+                        Console.WriteLine();
+                        found = new Tuple<int, int>(a, b);
                         Console.WriteLine("  Found solution for {0} and {1}", a, b);
                     }
-                    b++;
-                } while (result < targetAmount);
+                }
                 a++;
             }
             if (count == 0)
