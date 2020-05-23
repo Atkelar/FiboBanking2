@@ -56,7 +56,7 @@ namespace FibonacciBanking
         {
             Console.Write("Trying for step {0} ({1},{2}) ", i, f1, f2);
             int count = 0;
-            int maxA = targetAmount / f1 - f2;   // no need to search beyond that.  We have to assume "0" is not a valid deposit!
+            int maxA = (targetAmount - f2) / f1;   // no need to search beyond that.  We have to assume "0" is not a valid deposit!
             int a = 1;
             Tuple<int, int> found = null;
             while (a < maxA)
