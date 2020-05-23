@@ -80,6 +80,9 @@ The upper limit of our search thus is the two fibonacci numbers that preceed one
 
 ## solving
 
+### Let's call it a "Parker Solution"...
+...the numbers here have an error, due to a wrong formula... I knew I should refrain from swapping things in my head without proper notes.
+
 Since this is a formula with one solution but two unknowns, a simple direct computation seems impossible.
 
 Thus, after writing a program to find fibonacci pairs until the upper limit and then trying out different integer values for a and b in reverse order, reveals that the highest f1/f2 combination that produces exactly 1000000 as a result is 610 and 987, with a and b as 442 and 740. 
@@ -106,3 +109,33 @@ Day 16 : 618034
 Day 17 : 1000000
 Solution: deposit 442 and 298, reach 1000000 in 17 days
 ```
+### Here's the real version, with proper numbers
+
+154 and 144 for the initial amounts:
+
+```
+Day 1: 154
+Day 2 : 144
+Day 3 : 298
+Day 4 : 442
+Day 5 : 740
+Day 6 : 1182
+Day 7 : 1922
+Day 8 : 3104
+Day 9 : 5026
+Day 10 : 8130
+Day 11 : 13156
+Day 12 : 21286
+Day 13 : 34442
+Day 14 : 55728
+Day 15 : 90170
+Day 16 : 145898
+Day 17 : 236068
+Day 18 : 381966
+Day 19 : 618034
+Day 20 : 1000000
+
+Solution: deposit 154 and -10, reach 1000000 in 20 days
+```
+
+So, my solution now yields 154 and -10 with 20 days to reach 1M... D'Oh.
